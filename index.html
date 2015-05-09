@@ -5,8 +5,8 @@
 	<title>Hello World</title>
 	<script src="angular.js"></script>
 	<script>
-		angular.module("helloword", []);
-		angular.module("helloword").controller("hellowordCtrl", function($scope) {
+		var app = angular.module("helloword", []);
+		app.controller("hellowordCtrl", function($scope) {
 			$scope.message = "Hello World!";
 		});
 	</script>
