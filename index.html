@@ -27,6 +27,13 @@
 		.negrito {
 			font-weight: bold;
 		}
+		.cor-contato {
+			width: 20px;
+			height: 20px;
+		}
+		.rodape {
+			text-align: center;
+		}
 	</style>
 
 	<script src="lib/angular/angular.min.js"></script>
@@ -35,8 +42,8 @@
 		angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope){
 			$scope.app = "Lista Telefonica";
 			$scope.contatos = [
-				{nome: "pedro", telefone: "25293014"},
-				{nome: "ana", telefone: "25210211"}
+				{nome: "pedro", telefone: "25293014", cor: "blue"},
+				{nome: "ana", telefone: "25210211", cor: "green"}
 			];
 			$scope.operadoras = [
 				{nome: "Oi", codigo: 14, categoria: "Celular"},
@@ -78,17 +85,22 @@
 				<td>{{contato.nome}}</td>
 				<td>{{contato.telefone}}</td>
 				<td>{{contato.operadora.nome}}</td>
+				<td><div class="cor-contato" ng-style="{'background-color': contato.cor}"></div></td>
 			</tr>
 		</table>
+		<label for="nome">Nome</label>
 		<input type="text" class="form-control" ng-model="contato.nome">
+		<label for="telefone">Telefone</label>
 		<input type="text" class="form-control" ng-model="contato.telefone">
+		<label for="operadora">Operadora</label>
 		<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
 			<option value="">Selecione uma operadora</option>
 		</select>
 		<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar Contato</button>
-		<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-disabled="!isContatosSelecionados(contatos)">Apagar Contato</button>
+		<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-show="isContatosSelecionados(contatos)">Apagar Contato</button>
 
 	</div>
+	<!-- <div ng-include="'footer.html'"></div> -->
 
 </body>
 </html>
