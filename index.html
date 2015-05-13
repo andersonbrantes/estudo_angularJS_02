@@ -88,16 +88,25 @@
 				<td><div class="cor-contato" ng-style="{'background-color': contato.cor}"></div></td>
 			</tr>
 		</table>
-		<label for="nome">Nome</label>
-		<input type="text" class="form-control" ng-model="contato.nome">
-		<label for="telefone">Telefone</label>
-		<input type="text" class="form-control" ng-model="contato.telefone">
-		<label for="operadora">Operadora</label>
-		<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
-			<option value="">Selecione uma operadora</option>
-		</select>
-		<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar Contato</button>
-		<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-show="isContatosSelecionados(contatos)">Apagar Contato</button>
+
+		<form name="contatoForm">
+			<label for="nome">Nome</label>
+			<input type="text" name="nome" class="form-control" ng-model="contato.nome" ng-required="true">
+			<label for="telefone">Telefone</label>
+			<input type="text" name="telefone" class="form-control" ng-model="contato.telefone" ng-required="true">
+			<label for="operadora">Operadora</label>
+			<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
+				<option value="">Selecione uma operadora</option>
+			</select>
+		</form>
+		<div class="alert alert-danger" ng-show="contatoForm.nome.$invalid && contatoForm.nome.$dirty">
+			Por favor, preencha o campo nome!
+		</div>
+		<div class="alert alert-danger" ng-show="contatoForm.telefone.$invalid && contatoForm.telefone.$dirty">
+			Por favor, preencha o campo telefone!
+		</div>		
+			<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
+			<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-show="isContatosSelecionados(contatos)">Apagar Contato</button>
 
 	</div>
 	<!-- <div ng-include="'footer.html'"></div> -->
