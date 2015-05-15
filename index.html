@@ -9,7 +9,7 @@
 
 	<style>
 		.jumbotron {
-			width: 400px;
+			width: 600px;
 			text-align: center;
 			margin: 10px auto 0;
 			padding: 20px;
@@ -43,8 +43,8 @@
 		angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope){
 			$scope.app = "Lista Telefonica";
 			$scope.contatos = [
-				{nome: "pedro", telefone: "25293014", cor: "blue"},
-				{nome: "ana", telefone: "25210211", cor: "green"}
+				{nome: "pedro", telefone: "25293014", data: new Date(), cor: "blue"},
+				{nome: "ana", telefone: "25210211", data: new Date(), cor: "green"}
 			];
 			$scope.operadoras = [
 				{nome: "Oi", codigo: 14, categoria: "Celular"},
@@ -81,13 +81,15 @@
 				<th>Nome</th>
 				<th>Telefone</th>
 				<th>operadora</th>
+				<th>Data</th>
 			</tr>
 			<tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos">
 				<td><input type="checkbox" ng-model="contato.selecionado" /></td>
-				<td>{{contato.nome}}</td>
+				<td>{{contato.nome | uppercase}}</td>
 				<td>{{contato.telefone}}</td>
-				<td>{{contato.operadora.nome}}</td>
+				<td>{{contato.operadora.nome | lowercase}}</td>
 				<td><div class="cor-contato" ng-style="{'background-color': contato.cor}"></div></td>
+				<td>{{contato.data}}</td>
 			</tr>
 		</table>
 
