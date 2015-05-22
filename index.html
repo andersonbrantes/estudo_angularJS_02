@@ -110,11 +110,11 @@
 			</select>
 		</form>
 
-		<div ng-messages="contatoForm.nome.$error" class="alert alert-danger">		
-			<div ng-message="required">
+		<div ng-messages="contatoForm.nome.$error">		
+			<div ng-message="required" class="alert alert-danger">
 				Por favor, preencha o campo nome!
 			</div>
-			<div ng-message="minlength">
+			<div ng-message="minlength" class="alert alert-danger">
 				Por favor, o campo nome deve ter no mínimo 10 caracteres!
 			</div>		
 		</div>
